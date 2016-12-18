@@ -1,6 +1,7 @@
 import pygame as pg
 from constants import WINDOW_WIDTH, WINDOW_HEIGHT
 from models.player import Player
+from engine.control import handle_key_up, handle_key_down
 from pygame import Rect
 
 
@@ -28,6 +29,10 @@ def main():
         ev = pg.event.poll()    # Look for any event
         if ev.type == pg.QUIT:  # Window close button clicked?
             break                   #   .   .. leave game loop
+        elif ev.type == pg.KEYDOWN:
+            handle_key_down(ev)
+        elif ev.type == pg.KEYUP:
+            handle_key_up(ev)
 
         # Update your game objects and data structures here...
 
