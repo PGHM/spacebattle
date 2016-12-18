@@ -18,8 +18,8 @@ def main():
     # Create surface of (width, height), and its window.
     main_surface = pg.display.set_mode((surface_height, surface_width))
 
-    some_color = (0, 0, 255)  # A color is a mix of (Red, Green, Blue)
-    some_other_color = (255, 255, 255)
+    bg_color= (0, 0, 100)  # A color is a mix of (Red, Green, Blue)
+
     # Set up some data to describe a small rectangle and its color
     
 
@@ -36,6 +36,8 @@ def main():
             break                   #   .   .. leave game loop
         elif ev.type == pg.KEYDOWN:
             handle_key_down(ev)
+            if ev.key == pg.K_UP:
+                player.fire() 
         elif ev.type == pg.KEYUP:
             handle_key_up(ev)
 
@@ -45,12 +47,13 @@ def main():
             player.change_direction(-0.1)
         elif keys[pg.K_RIGHT]:
             player.change_direction(0.1)
+
         # Update your game objects and data structures here...
 
         # We draw everything from scratch on each frame.
         # So first fill everything with the background color
 
-        main_surface.fill(some_color)
+        main_surface.fill(bg_color)
 
         
 
