@@ -1,6 +1,6 @@
 import pygame as pg
 from constants import WINDOW_WIDTH, WINDOW_HEIGHT
-from Player import Player
+from models.player import Player
 from pygame import Rect
 
 
@@ -36,7 +36,7 @@ def main():
 
         main_surface.fill(some_color)
 
-        pygame.draw.polygon(main_surface, some_other_color, triangle_points, 0)
+        pg.draw.polygon(main_surface, some_other_color, triangle_points, 0)
 
         player.draw()
         # main_surface.fill(some_other_color, small_box)
