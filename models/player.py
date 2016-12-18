@@ -2,20 +2,24 @@
 
 import pygame as pg
 
+
+
 class Player:
 
-    def __init__(self):
+    def __init__(self, space_ship):
+        self.main_surface = pg.display.get_surface()
+
         self.health = 100
 
-        self.position_x = 100
-        self.position_y = 100
+        self.position_x = self.main_surface.get_width() / 2
+        self.position_y = self.main_surface.get_height() / 2
 
         self.direction_angle = 0
 
-        self.ship_color = (0,100,100)
+        self.space_ship = space_ship
 
     def get_position(self):
-        return [position_x, position_y]
+        return [self.position_x, self.position_y]
 
     def get_direction(self):
         return direction_angle
@@ -23,9 +27,5 @@ class Player:
     def change_diretion(self, angle_diff):
         direction_angle += angle_diff
 
-    def draw(self   ):
-        main_surface = pg.display.get_surface()
-        pg.draw.polygon(main_surface, self.ship_color, ((200, 300), (300, 150), (200, 0)))
-
-
-
+    def draw(self):
+        pg.draw.polygon(self.main_surface, self.space_ship.get_color(),self.space_ship.get_point_list(self.get_position()))

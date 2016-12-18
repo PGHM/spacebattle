@@ -1,6 +1,7 @@
 import pygame as pg
 from constants import WINDOW_WIDTH, WINDOW_HEIGHT
 from models.player import Player
+from models.space_ship import SpaceShip
 from pygame import Rect
 
 
@@ -18,12 +19,12 @@ def main():
     some_color = (0, 0, 255)  # A color is a mix of (Red, Green, Blue)
     some_other_color = (255, 255, 255)
     # Set up some data to describe a small rectangle and its color
-    triangle_points = (0,200),(100,0),(200,200)
+    
 
 
 
 
-    player = Player()
+    player = Player(SpaceShip())
     while True:
         ev = pg.event.poll()    # Look for any event
         if ev.type == pg.QUIT:  # Window close button clicked?
@@ -36,7 +37,7 @@ def main():
 
         main_surface.fill(some_color)
 
-        pg.draw.polygon(main_surface, some_other_color, triangle_points, 0)
+        
 
         player.draw()
         # main_surface.fill(some_other_color, small_box)
