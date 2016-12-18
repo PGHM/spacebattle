@@ -1,11 +1,12 @@
 import pygame
+from constants import WINDOW_WIDTH, WINDOW_HEIGHT
 from pygame import Rect
 
 def main():
     """ Set up the game and run the main game loop """
     pygame.init()      # Prepare the pygame module for use
-    surface_height = 700   # Desired physical surface size, in pixels.
-    surface_width = 700    # Desired physical surface size, in pixels.
+    surface_height = WINDOW_WIDTH   # Desired physical surface size, in pixels.
+    surface_width = WINDOW_HEIGHT    # Desired physical surface size, in pixels.
 
     # Create surface of (width, height), and its window.
     main_surface = pygame.display.set_mode((surface_height, surface_width))
