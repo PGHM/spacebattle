@@ -47,6 +47,6 @@ def main():
         # Now the surface is ready, tell pygame to display it!
         pg.display.flip()
 
-    pygame.quit()     # Once we leave the loop, close the window.
+    pg.quit()     # Once we leave the loop, close the window.
 
 main()
