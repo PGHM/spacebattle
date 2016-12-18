@@ -10,9 +10,9 @@ class SpaceShip:
         self.width = width
         self.ship_color = color
 
-        self.apex_point = [0, 0]
-        self.left_wing_point = [-1*width/2, length ]
-        self.right_wing_point = [width/2, length ]
+        self.apex_point = [0, -1*length/2]
+        self.left_wing_point = [-1*width/2, length/2 ]
+        self.right_wing_point = [width/2, length/2 ]
 
         self.update_points(0)
 

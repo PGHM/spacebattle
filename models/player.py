@@ -13,7 +13,6 @@ class Player:
 
         self.position_x = self.main_surface.get_width() / 2
         self.position_y = self.main_surface.get_height() / 2
-
         self.direction_angle = 0
 
         self.space_ship = space_ship
@@ -29,7 +28,6 @@ class Player:
         self.space_ship.update_points(angle_diff)
 
     def draw(self):
-
       
         point_list = self.space_ship.get_point_list();
 
