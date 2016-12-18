@@ -31,13 +31,15 @@ def main():
         clock.tick(60)
 
         ev = pg.event.poll()    # Look for any event
-        keys=pg.key.get_pressed()
+
         if ev.type == pg.QUIT:  # Window close button clicked?
             break                   #   .   .. leave game loop
         elif ev.type == pg.KEYDOWN:
             handle_key_down(ev)
         elif ev.type == pg.KEYUP:
             handle_key_up(ev)
+
+        keys = pg.key.get_pressed()
 
         if keys[pg.K_LEFT]:
             player.change_direction(-0.1)
