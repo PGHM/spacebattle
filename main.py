@@ -5,14 +5,16 @@ from engine.control import handle_key_up, handle_key_down
 from models.space_ship import SpaceShip
 from pygame import Rect
 
+
 def main():
     """ Set up the game and run the main game loop """
     pg.init()      # Prepare the pygame module for use
     surface_height = WINDOW_WIDTH   # Desired physical surface size, in pixels.
     surface_width = WINDOW_HEIGHT    # Desired physical surface size, in pixels.
 
-    surface_height = 700   # Desired physical surface size, in pixels.
-    surface_width = 700    # Desired physical surface size, in pixels.
+    clock = pg.time.Clock()
+
+
     # Create surface of (width, height), and its window.
     main_surface = pg.display.set_mode((surface_height, surface_width))
 
@@ -23,10 +25,13 @@ def main():
 
 
 
-
-    player = Player(SpaceShip())
+    space_ship = SpaceShip(50,30, (255,0,0))
+    player = Player(space_ship)
     while True:
+        clock.tick(60)
+
         ev = pg.event.poll()    # Look for any event
+        keys=pg.key.get_pressed()
         if ev.type == pg.QUIT:  # Window close button clicked?
             break                   #   .   .. leave game loop
         elif ev.type == pg.KEYDOWN:
@@ -34,6 +39,10 @@ def main():
         elif ev.type == pg.KEYUP:
             handle_key_up(ev)
 
+        if keys[pg.K_LEFT]:
+            player.change_direction(-0.1)
+        elif keys[pg.K_RIGHT]:
+            player.change_direction(0.1)
         # Update your game objects and data structures here...
 
         # We draw everything from scratch on each frame.
