@@ -1,4 +1,4 @@
-
+from engine.geometry import rotate
 from math import cos
 from math import sin
 from math import pi
@@ -22,19 +22,10 @@ class SpaceShip:
         return (point_list[0][0] + point_x[0] , point_list[0][1] + point_x[1])
 
     def get_color(self):
-
         return self.ship_color
 
     def update_points(self, angle_diff):
-        points = self.rotate_space_ship(self.get_point_list(), angle_diff)
+        points = rotate(self.get_point_list(), angle_diff)
         self.apex_point = points[0]
         self.left_wing_point = points[1]
         self.right_wing_point = points[2]
-
-    def rotate_space_ship(self, polygon, angle_diff):
-        rotated_space_ship = []
-        for point in polygon :
-            x = point[0] * cos(angle_diff) - point[1] * sin(angle_diff)
-            y = point[0] * sin(angle_diff) + point[1] * cos(angle_diff)
-            rotated_space_ship.append((x, y))
-        return rotated_space_ship

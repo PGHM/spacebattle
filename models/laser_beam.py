@@ -2,7 +2,7 @@ import pygame as pg
 from math import sin
 from math import cos
 from math import pi
-
+from engine.geometry import move
 
 class LaserBeam:
 
@@ -16,10 +16,7 @@ class LaserBeam:
         self.starting_pos = starting_pos
         self.pos_tail = starting_pos
 
-        #TODO: make a method for move, rotate etc. basic geometric transformations
-        self.pos_front = [starting_pos[0] + self.beam_length *
-                cos(self.direction), starting_pos[1] + self.beam_length * sin(self.direction)]
-       
+        self.pos_front = move(self.pos_tail, self.direction, self.beam_length)
         self.main_surface = pg.display.get_surface()
 
     def draw(self):
@@ -29,14 +26,8 @@ class LaserBeam:
         return True 
 
     def update_position(self):
-        tail_x = self.pos_tail[0] + self.speed * cos(self.direction)
-        tail_y = self.pos_tail[1] + self.speed * sin(self.direction)
-
-        front_x = self.pos_tail[0] + self.beam_length * cos(self.direction)
-        front_y = self.pos_tail[1] + self.beam_length * sin(self.direction)
-
-        self.pos_tail = (tail_x, tail_y)
-        self.pos_front = (front_x, front_y )
+        self.pos_tail = move(self.pos_tail, self.direction, self.speed)
+        self.pos_front = move(self.pos_front, self.direction, self.speed)
 
     def reached_edge(self):
         x_out_of_bounds = self.pos_front[0] < 0 or self.pos_front[0] > self.main_surface.get_width()
