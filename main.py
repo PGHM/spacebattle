@@ -28,16 +28,20 @@ def main():
             break                   #   .   .. leave game loop
         elif ev.type == pg.KEYDOWN:
             handle_key_down(ev)
-            if ev.key == pg.K_UP:
+            if ev.key == pg.K_SPACE:
                 player.fire() 
         elif ev.type == pg.KEYUP:
             handle_key_up(ev)
 
         keys = pg.key.get_pressed()
 
+        if keys[pg.K_UP]:
+            player.move_forward()
+        if keys[pg.K_DOWN]:
+            player.move_backwards()
         if keys[pg.K_LEFT]:
             player.change_direction(-0.1)
-        elif keys[pg.K_RIGHT]:
+        if keys[pg.K_RIGHT]:
             player.change_direction(0.1)
 
         # Update your game objects and data structures here...

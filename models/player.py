@@ -2,6 +2,7 @@
 
 import pygame as pg
 from models.laser_beam import LaserBeam
+from engine.geometry import move
 from math import pi
 
 class Player:
@@ -16,6 +17,7 @@ class Player:
         
         #TODO: this could come as a parameter?
         self.direction_angle = 3 * pi / 2 # ship starts with apex pointing up
+        self.speed = 5
         
         self.space_ship = space_ship
         self.bullets = []
@@ -25,6 +27,16 @@ class Player:
 
     def get_direction(self):
         return self.direction_angle
+
+    def move_forward(self):
+        new_position = move(self.get_position(), self.direction_angle,
+                self.speed)
+        self.position_x, self.position_y = new_position
+
+    def move_backwards(self):
+        new_position = move(self.get_position(), self.direction_angle,
+                -self.speed)
+        self.position_x, self.position_y = new_position
 
     def change_direction(self, angle_diff):
         self.direction_angle += angle_diff
