@@ -1,0 +1,4 @@
+
+*monitoring area (background of the area and elements are transparent)
+
+	- opponents shown in green old fashion radar
