@@ -14,8 +14,6 @@ class SpaceShip:
         self.left_wing_point = [-1*width/2, length/2 ]
         self.right_wing_point = [width/2, length/2 ]
 
-        self.update_points(0)
-
     def get_point_list(self):
         return [self.apex_point, self.left_wing_point, self.right_wing_point]
 
@@ -27,8 +25,8 @@ class SpaceShip:
 
         return self.ship_color
 
-    def update_points(self, ship_direction):
-        points = self.rotate_space_ship(self.get_point_list(), ship_direction)
+    def update_points(self, angle_diff):
+        points = self.rotate_space_ship(self.get_point_list(), angle_diff)
         self.apex_point = points[0]
         self.left_wing_point = points[1]
         self.right_wing_point = points[2]

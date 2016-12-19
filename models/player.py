@@ -2,7 +2,7 @@
 
 import pygame as pg
 from models.laser_beam import LaserBeam
-
+from math import pi
 
 class Player:
 
@@ -13,10 +13,11 @@ class Player:
 
         self.position_x = self.main_surface.get_width() / 2
         self.position_y = self.main_surface.get_height() / 2
-        self.direction_angle = 0
-
+        
+        #TODO: this could come as a parameter?
+        self.direction_angle = 3 * pi / 2 # ship starts with apex pointing up
+        
         self.space_ship = space_ship
-
         self.bullets = []
 
     def get_position(self):

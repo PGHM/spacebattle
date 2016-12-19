@@ -15,7 +15,10 @@ class LaserBeam:
         self.direction = direction
         self.starting_pos = starting_pos
         self.pos_tail = starting_pos
-        self.pos_front = [starting_pos[0] + self.beam_length * sin(self.direction), starting_pos[1] - self.beam_length * cos(self.direction)]
+
+        #TODO: make a method for move, rotate etc. basic geometric transformations
+        self.pos_front = [starting_pos[0] + self.beam_length *
+                cos(self.direction), starting_pos[1] + self.beam_length * sin(self.direction)]
        
         self.main_surface = pg.display.get_surface()
 
@@ -26,11 +29,11 @@ class LaserBeam:
         return True 
 
     def update_position(self):
-        tail_x = self.pos_tail[0] + self.speed * sin(self.direction)
-        tail_y = self.pos_tail[1] - self.speed * cos(self.direction)
+        tail_x = self.pos_tail[0] + self.speed * cos(self.direction)
+        tail_y = self.pos_tail[1] + self.speed * sin(self.direction)
 
-        front_x = self.pos_tail[0] + self.beam_length * sin(self.direction)
-        front_y = self.pos_tail[1] - self.beam_length * cos(self.direction)
+        front_x = self.pos_tail[0] + self.beam_length * cos(self.direction)
+        front_y = self.pos_tail[1] + self.beam_length * sin(self.direction)
 
         self.pos_tail = (tail_x, tail_y)
         self.pos_front = (front_x, front_y )
