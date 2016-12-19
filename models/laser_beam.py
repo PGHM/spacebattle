@@ -26,12 +26,11 @@ class LaserBeam:
         return True 
 
     def update_position(self):
-        print (self.direction)
         tail_x = self.pos_tail[0] + self.speed * sin(self.direction)
         tail_y = self.pos_tail[1] - self.speed * cos(self.direction)
 
         front_x = self.pos_tail[0] + self.beam_length * sin(self.direction)
-        front_y = self.pos_tail[1] -self.beam_length * cos(self.direction)
+        front_y = self.pos_tail[1] - self.beam_length * cos(self.direction)
 
         self.pos_tail = (tail_x, tail_y)
         self.pos_front = (front_x, front_y )

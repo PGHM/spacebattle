@@ -3,8 +3,6 @@ from constants import WINDOW_WIDTH, WINDOW_HEIGHT
 from models.player import Player
 from engine.control import handle_key_up, handle_key_down
 from models.space_ship import SpaceShip
-from pygame import Rect
-
 
 def main():
     """ Set up the game and run the main game loop """
@@ -14,16 +12,10 @@ def main():
 
     clock = pg.time.Clock()
 
-
     # Create surface of (width, height), and its window.
     main_surface = pg.display.set_mode((surface_height, surface_width))
 
-    bg_color= (0, 0, 100)  # A color is a mix of (Red, Green, Blue)
-
-    # Set up some data to describe a small rectangle and its color
-    
-
-
+    bg_color = (0, 0, 100)  # A color is a mix of (Red, Green, Blue)
 
     space_ship = SpaceShip(50,30, (255,0,0))
     player = Player(space_ship)
@@ -54,15 +46,8 @@ def main():
         # So first fill everything with the background color
 
         main_surface.fill(bg_color)
-
-        
-
         player.draw()
-        # main_surface.fill(some_other_color, small_box)
         
-
-        # Overpaint a smaller rectangle on the main surface
-
         # Now the surface is ready, tell pygame to display it!
         pg.display.flip()
 
