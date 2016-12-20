@@ -1,4 +1,4 @@
-from math import cos, sin, pi
+from math import cos, sin, pi, hypot
 
 def rotate(polygon, angle):
     rotated_points = []
@@ -13,3 +13,6 @@ def rotate(polygon, angle):
 def move(point, direction, amount):
     return [point[0] + amount * cos(direction),
             point[1] + amount * sin(direction)]
+
+def distance(point1, point2):
+    return hypot(point1[0] - point2[0], point1[1] - point2[1])

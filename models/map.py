@@ -26,9 +26,9 @@ class Map:
         
         for enemy in self.enemies:
             enemy.update_position()
-#            enemy.health -= enemy.damage(self.bullets)
-#            if enemy.health < 0:
-#                enemy.destroy()
+            enemy.damage(self.bullets)
+            if enemy.health <= 0:
+                self.enemies.remove(enemy)
 
     def draw(self):
         for bullet in self.bullets:

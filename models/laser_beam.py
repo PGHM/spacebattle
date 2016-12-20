@@ -11,13 +11,16 @@ class LaserBeam:
         self.speed = 10
 
         self.color = color
-        # self.damage = damage
+        self.damage = 50
         self.direction = direction
         self.starting_pos = starting_pos
         self.pos_tail = starting_pos
 
         self.pos_front = move(self.pos_tail, self.direction, self.beam_length)
         self.main_surface = pg.display.get_surface()
+
+    def get_hit_box_point(self):
+        return self.pos_front
 
     def draw(self):
         pg.draw.line(self.main_surface, self.color, self.pos_tail, self.pos_front, 3)
