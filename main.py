@@ -1,5 +1,5 @@
 import pygame as pg
-from constants import WINDOW_WIDTH, WINDOW_HEIGHT
+from constants import WINDOW_WIDTH, WINDOW_HEIGHT, ENEMY_SPAWN_EVENT
 from models.player import Player
 from models.map import Map
 from engine.control import handle_key_up, handle_key_down
@@ -20,7 +20,7 @@ def main():
 
     space_ship = SpaceShip(50,30, (255,0,0))
     player = Player(space_ship)
-    game_map = Map(player, clock)
+    game_map = Map(player)
 
     while True:
         clock.tick(60)
@@ -34,6 +34,8 @@ def main():
                 game_map.bullets.append(player.fire())
         elif ev.type == pg.KEYUP:
             pass
+        elif ev.type == ENEMY_SPAWN_EVENT:
+            game_map.spawn_enemies()
 
         keys = pg.key.get_pressed()
 
