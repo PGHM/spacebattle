@@ -20,10 +20,7 @@ class LaserBeam:
         self.main_surface = pg.display.get_surface()
 
     def draw(self):
-        if self.reached_edge():
-            return False
         pg.draw.line(self.main_surface, self.color, self.pos_tail, self.pos_front, 3)
-        return True 
 
     def update_position(self):
         self.pos_tail = move(self.pos_tail, self.direction, self.speed)
@@ -33,6 +30,4 @@ class LaserBeam:
         x_out_of_bounds = self.pos_front[0] < 0 or self.pos_front[0] > self.main_surface.get_width()
         y_out_of_bounds = self.pos_front[1] < 0 or self.pos_front[1] > self.main_surface.get_height()
 
-        if x_out_of_bounds or y_out_of_bounds:
-            return True
-        return False
+        return x_out_of_bounds or y_out_of_bounds

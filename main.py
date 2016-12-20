@@ -1,6 +1,7 @@
 import pygame as pg
 from constants import WINDOW_WIDTH, WINDOW_HEIGHT
 from models.player import Player
+from models.map import Map
 from engine.control import handle_key_up, handle_key_down
 from models.space_ship import SpaceShip
 
@@ -19,6 +20,8 @@ def main():
 
     space_ship = SpaceShip(50,30, (255,0,0))
     player = Player(space_ship)
+    game_map = Map(player, clock)
+
     while True:
         clock.tick(60)
 
@@ -27,11 +30,10 @@ def main():
         if ev.type == pg.QUIT:  # Window close button clicked?
             break                   #   .   .. leave game loop
         elif ev.type == pg.KEYDOWN:
-            handle_key_down(ev)
             if ev.key == pg.K_SPACE:
-                player.fire() 
+                game_map.bullets.append(player.fire())
         elif ev.type == pg.KEYUP:
-            handle_key_up(ev)
+            pass
 
         keys = pg.key.get_pressed()
 
@@ -43,15 +45,16 @@ def main():
             player.change_direction(-0.1)
         if keys[pg.K_RIGHT]:
             player.change_direction(0.1)
-
-        # Update your game objects and data structures here...
+        
+        game_map.update()
 
         # We draw everything from scratch on each frame.
         # So first fill everything with the background color
 
         main_surface.fill(bg_color)
         player.draw()
-        
+        game_map.draw()
+
         # Now the surface is ready, tell pygame to display it!
         pg.display.flip()
 

@@ -20,7 +20,6 @@ class Player:
         self.speed = 5
         
         self.space_ship = space_ship
-        self.bullets = []
 
     def get_position(self):
         return [self.position_x, self.position_y]
@@ -43,8 +42,7 @@ class Player:
         self.space_ship.update_points(angle_diff)
 
     def fire(self):
-        new_laser_beam = LaserBeam((255, 0, 0), self.space_ship.get_apex_point_relative_to(self.get_position()), self.direction_angle)
-        self.bullets.append(new_laser_beam)
+        return LaserBeam((255, 0, 0), self.space_ship.get_apex_point_relative_to(self.get_position()), self.direction_angle)
 
     def draw(self):
         point_list = self.space_ship.get_point_list();
@@ -55,8 +53,3 @@ class Player:
 
         pg.draw.polygon(self.main_surface, self.space_ship.get_color(), (p1, p2, p3), 2)
 
-        for bullet in self.bullets:
-            if bullet.draw():
-                bullet.update_position()
-            else:
-                self.bullets.remove(bullet)
