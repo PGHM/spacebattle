@@ -9,8 +9,8 @@ from pygame import Rect
 def main():
     """ Set up the game and run the main game loop """
     pg.init()      # Prepare the pygame module for use
-    surface_height = WINDOW_WIDTH   # Desired physical surface size, in pixels.
-    surface_width = WINDOW_HEIGHT    # Desired physical surface size, in pixels.
+    surface_height = WINDOW_HEIGHT   # Desired physical surface size, in pixels.
+    surface_width = WINDOW_WIDTH    # Desired physical surface size, in pixels.
 
     clock = pg.time.Clock()
 
