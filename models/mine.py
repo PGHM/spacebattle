@@ -13,13 +13,16 @@ class Mine:
         self.main_surface = pg.display.get_surface()
         self.color = (0, 0, 255)
         self.health = 100
+        self.collision_damage = 100
 
     def damage(self, bullets):
         for bullet in bullets:
-            if (distance(bullet.get_hit_box_point(), self.position) <=
-                    self.radius):
+            if self.is_point_inside_hit_box(bullet.get_hit_box_point()):
                 self.health -= bullet.damage
                 bullets.remove(bullet)
+
+    def is_point_inside_hit_box(self, point):
+        return distance(point, self.position) <= self.radius
 
     def update_position(self):
         pass # mines do not move

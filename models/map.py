@@ -41,11 +41,11 @@ class Map:
             if enemy.health <= 0:
                 self.enemies.remove(enemy)
 
-        for enemy in self.enemies:
-            #if distance(enemy, player) <=  :
-            #    player.health -= 50
-            #    player.remove(player)
-            pass
+            if enemy.is_point_inside_hit_box(
+                    self.player.space_ship.get_apex_point_relative_to(self.player.get_position())):
+                self.player.health -= enemy.collision_damage
+                self.enemies.remove(enemy)
+
 
     def draw(self):
         for bullet in self.bullets:

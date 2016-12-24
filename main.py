@@ -5,6 +5,12 @@ from models.map import Map
 from engine.control import handle_key_up, handle_key_down
 from models.space_ship import SpaceShip
 
+def print_game_over(main_surface):
+    myfont = pg.font.SysFont("monospace", 100)
+    label = myfont.render("GAME OVER!", 1, (255, 0, 0))
+    main_surface.blit(label, (WINDOW_WIDTH / 2 - 280, WINDOW_HEIGHT / 2 - 50))
+    pg.display.flip()
+
 def main():
     """ Set up the game and run the main game loop """
     pg.init()      # Prepare the pygame module for use
@@ -17,7 +23,6 @@ def main():
     main_surface = pg.display.set_mode((surface_height, surface_width))
 
     bg_color = (0, 0, 0)  # A color is a mix of (Red, Green, Blue)
-
     space_ship = SpaceShip(50,30, (255,255, 255))
     player = Player(space_ship)
     game_map = Map(player)
@@ -29,7 +34,12 @@ def main():
 
         if ev.type == pg.QUIT:  # Window close button clicked?
             break                   #   .   .. leave game loop
-        elif ev.type == pg.KEYDOWN:
+
+        if player == None:
+            print_game_over(main_surface)
+            continue
+
+        if ev.type == pg.KEYDOWN:
             if ev.key == pg.K_SPACE:
                 game_map.bullets.append(player.fire())
         elif ev.type == pg.KEYUP:
@@ -47,8 +57,12 @@ def main():
             player.change_direction(-0.1)
         if keys[pg.K_RIGHT]:
             player.change_direction(0.1)
-        
+
         game_map.update()
+
+        if player.health <= 0:
+            player = None
+            continue
 
         # We draw everything from scratch on each frame.
         # So first fill everything with the background color
