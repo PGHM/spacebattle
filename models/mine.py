@@ -2,6 +2,7 @@ from constants import WINDOW_WIDTH, WINDOW_HEIGHT
 from random import randint
 from engine.geometry import distance
 import pygame as pg
+from engine.geometry import move
 
 class Mine:
 

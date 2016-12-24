@@ -2,3 +2,5 @@
 *monitoring area (background of the area and elements are transparent)
 
 	- opponents shown in green old fashion radar
+	- Rounds that get harder when player kills opponents
+	-

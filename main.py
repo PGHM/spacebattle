@@ -16,9 +16,9 @@ def main():
     # Create surface of (width, height), and its window.
     main_surface = pg.display.set_mode((surface_height, surface_width))
 
-    bg_color = (0, 0, 100)  # A color is a mix of (Red, Green, Blue)
+    bg_color = (0, 0, 0)  # A color is a mix of (Red, Green, Blue)
 
-    space_ship = SpaceShip(50,30, (255,0,0))
+    space_ship = SpaceShip(50,30, (255,255, 255))
     player = Player(space_ship)
     game_map = Map(player)
 

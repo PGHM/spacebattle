@@ -15,7 +15,6 @@ class LaserBeam:
         self.direction = direction
         self.starting_pos = starting_pos
         self.pos_tail = starting_pos
-
         self.pos_front = move(self.pos_tail, self.direction, self.beam_length)
         self.main_surface = pg.display.get_surface()
 
