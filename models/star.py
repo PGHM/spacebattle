@@ -1,17 +1,19 @@
-from constants import WINDOW_WIDTH, WINDOW_HEIGHT
 from random import randint
+from engine.geometry import move
+from constants import WINDOW_WIDTH, WINDOW_HEIGHT
 from engine.geometry import distance
 import pygame as pg
-from engine.geometry import move
 
-class Mine:
+class Star:
 
     def __init__(self):
-        self.radius = randint(20, 35)
+        self.radius = 15
         self.position = (randint(self.radius, WINDOW_WIDTH - self.radius),
                 randint(self.radius, WINDOW_HEIGHT - self.radius))
         self.main_surface = pg.display.get_surface()
-        self.color = (0, 0, 255)
+        self.color = (255, 255, 0)
+        self.speed = 5
+        self.direction = randint(0, 100)
         self.health = 100
 
     def damage(self, bullets):
@@ -22,8 +24,8 @@ class Mine:
                 bullets.remove(bullet)
 
     def update_position(self):
-        pass # mines do not move
+        self.position = move(self.position, self.direction, self.speed)
     
     def draw(self):
         pg.draw.circle(self.main_surface, self.color, self.position,
-                self.radius) 
+                self.radius)

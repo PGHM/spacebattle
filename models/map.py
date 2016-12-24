@@ -2,6 +2,7 @@ from constants import (INITIAL_ROCK_SPAWN_RATE, INITIAL_ENEMY_SPAWN_RATE,
         ENEMY_SPAWN_EVENT, ROCK_SPAWN_EVENT)
 import pygame as pg
 from models.mine import Mine
+from models.star import Star
 
 class Map:
 
@@ -15,7 +16,10 @@ class Map:
         pg.time.set_timer(ENEMY_SPAWN_EVENT, self.enemy_spawn_rate)
 
     def spawn_enemies(self):
-        self.enemies.append(Mine())
+        if len(self.enemies) % 2 == 0:
+            self.enemies.append(Star())
+        else:
+            self.enemies.append(Mine())
 
     def update(self):
         for bullet in self.bullets:
@@ -29,6 +33,12 @@ class Map:
             enemy.damage(self.bullets)
             if enemy.health <= 0:
                 self.enemies.remove(enemy)
+
+        for enemy in self.enemies:
+            #if distance(enemy, player) <=  :
+            #    player.health -= 50
+            #    player.remove(player)
+            pass
 
     def draw(self):
         for bullet in self.bullets:
