@@ -11,8 +11,8 @@ def rotate(polygon, angle):
     return rotated_points
 
 def move(point, direction, amount):
-    return [point[0] + amount * cos(direction),
-            point[1] + amount * sin(direction)]
+    return [int(point[0] + amount * cos(direction)),
+            int(point[1] + amount * sin(direction))]
 
 def distance(point1, point2):
     return hypot(point1[0] - point2[0], point1[1] - point2[1])
