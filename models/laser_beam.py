@@ -11,7 +11,7 @@ class LaserBeam:
         self.speed = 10
 
         self.color = color
-        self.damage = 50
+        self.damage = 100
         self.direction = direction
         self.starting_pos = starting_pos
         self.pos_tail = starting_pos
