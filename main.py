@@ -11,6 +11,12 @@ def print_game_over(main_surface):
     main_surface.blit(label, (WINDOW_WIDTH / 2 - 280, WINDOW_HEIGHT / 2 - 50))
     pg.display.flip()
 
+def reset_game():
+    space_ship = SpaceShip(50, 30, (255, 255, 255))
+    player = Player(space_ship)
+    game_map = Map(player)
+    return player, game_map
+
 def main():
     """ Set up the game and run the main game loop """
     pg.init()      # Prepare the pygame module for use
@@ -23,20 +29,21 @@ def main():
     main_surface = pg.display.set_mode((surface_height, surface_width))
 
     bg_color = (0, 0, 0)  # A color is a mix of (Red, Green, Blue)
-    space_ship = SpaceShip(50,30, (255,255, 255))
-    player = Player(space_ship)
-    game_map = Map(player)
+    player, game_map = reset_game()
 
     while True:
         clock.tick(60)
 
         ev = pg.event.poll()    # Look for any event
+        keys = pg.key.get_pressed()
 
         if ev.type == pg.QUIT:  # Window close button clicked?
             break                   #   .   .. leave game loop
 
         if player == None:
             print_game_over(main_surface)
+            if keys[pg.K_RETURN]:
+                player, game_map = reset_game()
             continue
 
         if ev.type == pg.KEYDOWN:
