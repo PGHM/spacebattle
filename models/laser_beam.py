@@ -27,9 +27,3 @@ class LaserBeam:
     def update_position(self):
         self.pos_tail = move(self.pos_tail, self.direction, self.speed)
         self.pos_front = move(self.pos_front, self.direction, self.speed)
-
-    def reached_edge(self):
-        x_out_of_bounds = self.pos_front[0] < 0 or self.pos_front[0] > self.main_surface.get_width()
-        y_out_of_bounds = self.pos_front[1] < 0 or self.pos_front[1] > self.main_surface.get_height()
-
-        return x_out_of_bounds or y_out_of_bounds

@@ -16,3 +16,8 @@ def move(point, direction, amount):
 
 def distance(point1, point2):
     return hypot(point1[0] - point2[0], point1[1] - point2[1])
+
+def reached_edge(position, main_surface):
+    x_out_of_bounds = position[0] < 0 or position[0] > main_surface.get_width()
+    y_out_of_bounds = position[1] < 0 or position[1] > main_surface.get_height()
+    return x_out_of_bounds or y_out_of_bounds
