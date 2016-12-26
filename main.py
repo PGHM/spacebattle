@@ -62,15 +62,12 @@ def main():
         if keys[pg.K_DOWN]:
             player.move_backwards()
         if keys[pg.K_LEFT]:
-            player.change_direction(-0.1)
+            player.change_direction(-0.05)
         if keys[pg.K_RIGHT]:
-            player.change_direction(0.1)
+            player.change_direction(0.05)
 
         game_map.update()
 
-        if player.health <= 0:
-            player = None
-            continue
 
         # We draw everything from scratch on each frame.
         # So first fill everything with the background color
@@ -81,6 +78,11 @@ def main():
 
         # Now the surface is ready, tell pygame to display it!
         pg.display.flip()
+
+        # This block must be after all drawing
+        if player.health <= 0:
+            player = None
+            continue
 
     pg.quit()     # Once we leave the loop, close the window.
 

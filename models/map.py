@@ -65,3 +65,4 @@ class Map:
 
     def update_hud(self):
         self.hud.print_score(self.score)
+        self.hud.print_health(self.player.health)
