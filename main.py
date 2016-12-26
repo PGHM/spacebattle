@@ -8,7 +8,7 @@ from models.space_ship import SpaceShip
 def print_game_over(main_surface):
     myfont = pg.font.SysFont("monospace", 100)
     label = myfont.render("GAME OVER!", 1, (255, 0, 0))
-    main_surface.blit(label, (WINDOW_WIDTH / 2 - 280, WINDOW_HEIGHT / 2 - 50))
+    main_surface.blit(label, (WINDOW_WIDTH / 2 - label.get_width() / 2 , WINDOW_HEIGHT / 2 - label.get_height() / 2))
     pg.display.flip()
 
 def reset_game():
