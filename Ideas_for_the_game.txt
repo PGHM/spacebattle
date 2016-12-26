@@ -4,3 +4,8 @@
 	- opponents shown in green old fashion radar
 	- Rounds that get harder when player kills opponents
 	-
+
+score depends on:
+	- size of the target
+	- speed of the target
+	- enemys 

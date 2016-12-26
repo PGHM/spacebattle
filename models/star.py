@@ -14,7 +14,8 @@ class Star:
         self.color = (255, 255, 0)
         self.speed = 5
         self.direction = randint(0, 100)
-        self.health = 100
+        self.max_health = 100
+        self.health = self.max_health
         self.collision_damage = 50
 
     def damage(self, bullets):

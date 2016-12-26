@@ -4,14 +4,17 @@ import pygame as pg
 from models.mine import Mine
 from models.star import Star
 from engine.geometry import reached_edge
+from ui.hud import HUD
 
 class Map:
 
     def __init__(self, player):
         self.player = player
+        self.hud = HUD(pg.display.get_surface())
         self.rocks = []
         self.enemies = []
         self.bullets = []
+        self.score = 0;
         self.enemy_spawn_rate = INITIAL_ENEMY_SPAWN_RATE
         self.rock_spawn_rate = INITIAL_ROCK_SPAWN_RATE
         pg.time.set_timer(ENEMY_SPAWN_EVENT, self.enemy_spawn_rate)
@@ -39,12 +42,16 @@ class Map:
 
             enemy.damage(self.bullets)
             if enemy.health <= 0:
+                self.score += enemy.max_health
                 self.enemies.remove(enemy)
+                continue
+
 
             if enemy.is_point_inside_hit_box(
                     self.player.space_ship.get_apex_point_relative_to(self.player.get_position())):
                 self.player.health -= enemy.collision_damage
                 self.enemies.remove(enemy)
+                continue
 
 
     def draw(self):
@@ -53,3 +60,8 @@ class Map:
 
         for enemy in self.enemies:
             enemy.draw()
+
+        self.update_hud()
+
+    def update_hud(self):
+        self.hud.print_score(self.score)

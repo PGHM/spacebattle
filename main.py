@@ -41,7 +41,8 @@ def main():
             break                   #   .   .. leave game loop
 
         if player == None:
-            print_game_over(main_surface)
+            game_map.hud.print_game_over()
+            pg.display.flip()
             if keys[pg.K_RETURN]:
                 player, game_map = reset_game()
             continue

@@ -4,6 +4,7 @@ from engine.geometry import distance
 import pygame as pg
 from engine.geometry import move
 
+
 class Mine:
 
     def __init__(self):
@@ -12,7 +13,8 @@ class Mine:
                 randint(self.radius, WINDOW_HEIGHT - self.radius))
         self.main_surface = pg.display.get_surface()
         self.color = (0, 0, 255)
-        self.health = 100
+        self.max_health = 100
+        self.health = self.max_health
         self.collision_damage = 100
 
     def damage(self, bullets):
