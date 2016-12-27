@@ -37,7 +37,7 @@ def main():
         ev = pg.event.poll()    # Look for any event
         keys = pg.key.get_pressed()
 
-        if ev.type == pg.QUIT:  # Window close button clicked?
+        if ev.type == pg.QUIT or keys[pg.K_ESCAPE]:  # Window close button clicked?
             break                   #   .   .. leave game loop
 
         if player == None and keys[pg.K_RETURN]:
@@ -62,7 +62,7 @@ def main():
             if ev.type == pg.KEYDOWN:
                 if ev.key == pg.K_SPACE:
                     game_map.bullets.append(player.fire())
-                    
+
         game_map.update()
 
 
