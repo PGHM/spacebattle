@@ -52,4 +52,3 @@ class Player:
         p3 = (point_list[2][0] + self.position_x , point_list[2][1] + self.position_y)
 
         pg.draw.polygon(self.main_surface, self.space_ship.get_color(), (p1, p2, p3), 2)
-

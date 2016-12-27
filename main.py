@@ -40,12 +40,8 @@ def main():
         if ev.type == pg.QUIT:  # Window close button clicked?
             break                   #   .   .. leave game loop
 
-        if player == None:
-            game_map.hud.print_game_over()
-            pg.display.flip()
-            if keys[pg.K_RETURN]:
+        if player == None and keys[pg.K_RETURN]:
                 player, game_map = reset_game()
-            continue
 
         if ev.type == pg.KEYDOWN:
             if ev.key == pg.K_SPACE:
@@ -55,16 +51,16 @@ def main():
         elif ev.type == ENEMY_SPAWN_EVENT:
             game_map.spawn_enemies()
 
-        keys = pg.key.get_pressed()
-
-        if keys[pg.K_UP]:
-            player.move_forward()
-        if keys[pg.K_DOWN]:
-            player.move_backwards()
-        if keys[pg.K_LEFT]:
-            player.change_direction(-0.05)
-        if keys[pg.K_RIGHT]:
-            player.change_direction(0.05)
+        # This block should contain key mapping that requires Player object
+        if player != None:
+            if keys[pg.K_UP]:
+                player.move_forward()
+            if keys[pg.K_DOWN]:
+                player.move_backwards()
+            if keys[pg.K_LEFT]:
+                player.change_direction(-0.05)
+            if keys[pg.K_RIGHT]:
+                player.change_direction(0.05)
 
         game_map.update()
 
@@ -73,14 +69,17 @@ def main():
         # So first fill everything with the background color
 
         main_surface.fill(bg_color)
-        player.draw()
         game_map.draw()
+        if player == None:
+            game_map.hud.print_game_over()
+        else:
+            player.draw()
 
         # Now the surface is ready, tell pygame to display it!
         pg.display.flip()
 
         # This block must be after all drawing
-        if player.health <= 0:
+        if player != None and player.health <= 0:
             player = None
             continue
 
