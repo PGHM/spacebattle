@@ -20,5 +20,7 @@ class HUD:
         self.main_surface.blit(label, (10, 10))
 
     def print_health(self, health):
+        if health < 0:
+            health = 0
         label = self.default_font.render('Health: {}'.format(health), 1, (255, 0, 0))
         self.main_surface.blit(label, (WINDOW_WIDTH - label.get_width() - 10 , 10))
