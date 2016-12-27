@@ -3,6 +3,7 @@
 import pygame as pg
 from models.laser_beam import LaserBeam
 from engine.geometry import move
+from engine import audio_player
 from math import pi
 
 class Player:
@@ -42,6 +43,7 @@ class Player:
         self.space_ship.update_points(angle_diff)
 
     def fire(self):
+        audio_player.play_laser_beam_sound()
         return LaserBeam((255, 0, 0), self.space_ship.get_apex_point_relative_to(self.get_position()), self.direction_angle)
 
     def draw(self):

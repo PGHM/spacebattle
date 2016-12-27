@@ -43,9 +43,6 @@ def main():
         if player == None and keys[pg.K_RETURN]:
                 player, game_map = reset_game()
 
-        if ev.type == pg.KEYDOWN:
-            if ev.key == pg.K_SPACE:
-                game_map.bullets.append(player.fire())
         elif ev.type == pg.KEYUP:
             pass
         elif ev.type == ENEMY_SPAWN_EVENT:
@@ -62,6 +59,10 @@ def main():
             if keys[pg.K_RIGHT]:
                 player.change_direction(0.05)
 
+            if ev.type == pg.KEYDOWN:
+                if ev.key == pg.K_SPACE:
+                    game_map.bullets.append(player.fire())
+                    
         game_map.update()
 
 
