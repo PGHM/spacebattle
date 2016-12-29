@@ -3,7 +3,7 @@ from constants import (INITIAL_ROCK_SPAWN_RATE, INITIAL_ENEMY_SPAWN_RATE,
 import pygame as pg
 from models.mine import Mine
 from models.star import Star
-from engine.geometry import reached_edge
+from engine.geometry import reached_edge, move
 from ui.hud import HUD
 
 class Map:
@@ -27,14 +27,14 @@ class Map:
 
     def update(self):
         for bullet in self.bullets:
-            bullet.update_position()
+            bullet.update_position(bullet.direction, bullet.speed)
 
             if reached_edge(bullet.get_hit_box_point(),
                     pg.display.get_surface()):
                 self.bullets.remove(bullet)
         
         for enemy in self.enemies:
-            enemy.update_position()
+            enemy.update_position(enemy.direction, enemy.speed)
             if reached_edge(enemy.position,
                     pg.display.get_surface()):
                 self.enemies.remove(enemy)
@@ -66,3 +66,10 @@ class Map:
     def update_hud(self):
         self.hud.print_score(self.score)
         self.hud.print_health(self.player.health)
+
+    def move_objects(self, direction, speed):
+        for enemy in self.enemies:
+            enemy.update_position(direction, speed)
+
+        for bullet in self.bullets:
+            bullet.update_position(direction, speed)

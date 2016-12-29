@@ -24,6 +24,6 @@ class LaserBeam:
     def draw(self):
         pg.draw.line(self.main_surface, self.color, self.pos_tail, self.pos_front, 3)
 
-    def update_position(self):
-        self.pos_tail = move(self.pos_tail, self.direction, self.speed)
-        self.pos_front = move(self.pos_front, self.direction, self.speed)
+    def update_position(self, direction, speed):
+        self.pos_tail = move(self.pos_tail, direction, speed)
+        self.pos_front = move(self.pos_front, direction, speed)

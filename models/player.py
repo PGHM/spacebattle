@@ -27,17 +27,7 @@ class Player:
 
     def get_direction(self):
         return self.direction_angle
-
-    def move_forward(self):
-        new_position = move(self.get_position(), self.direction_angle,
-                self.speed)
-        self.position_x, self.position_y = new_position
-
-    def move_backwards(self):
-        new_position = move(self.get_position(), self.direction_angle,
-                -self.speed)
-        self.position_x, self.position_y = new_position
-
+    
     def change_direction(self, angle_diff):
         self.direction_angle += angle_diff
         self.space_ship.update_points(angle_diff)

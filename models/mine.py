@@ -13,6 +13,8 @@ class Mine:
                 randint(self.radius, WINDOW_HEIGHT - self.radius))
         self.main_surface = pg.display.get_surface()
         self.color = (0, 0, 255)
+        self.direction = 0
+        self.speed = 0
         self.max_health = 100
         self.health = self.max_health
         self.collision_damage = 100
@@ -26,8 +28,8 @@ class Mine:
     def is_point_inside_hit_box(self, point):
         return distance(point, self.position) <= self.radius
 
-    def update_position(self):
-        pass # mines do not move
+    def update_position(self, direction, speed):
+        self.position = move(self.position, direction, speed)
     
     def draw(self):
         pg.draw.circle(self.main_surface, self.color, self.position,

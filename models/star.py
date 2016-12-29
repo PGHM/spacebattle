@@ -27,8 +27,8 @@ class Star:
     def is_point_inside_hit_box(self, point):
         return distance(point, self.position) <= self.radius
 
-    def update_position(self):
-        self.position = move(self.position, self.direction, self.speed)
+    def update_position(self, direction, speed):
+        self.position = move(self.position, direction, speed)
     
     def draw(self):
         pg.draw.circle(self.main_surface, self.color, self.position,

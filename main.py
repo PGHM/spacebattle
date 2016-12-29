@@ -4,6 +4,7 @@ from models.player import Player
 from models.map import Map
 from engine.control import handle_key_up, handle_key_down
 from models.space_ship import SpaceShip
+from math import pi
 
 def print_game_over(main_surface):
     myfont = pg.font.SysFont("monospace", 100)
@@ -51,13 +52,12 @@ def main():
         # This block should contain key mapping that requires Player object
         if player != None:
             if keys[pg.K_UP]:
-                player.move_forward()
-            if keys[pg.K_DOWN]:
-                player.move_backwards()
+                game_map.move_objects(player.direction_angle + pi,
+                        player.speed)
             if keys[pg.K_LEFT]:
-                player.change_direction(-0.05)
+                player.change_direction(-0.075)
             if keys[pg.K_RIGHT]:
-                player.change_direction(0.05)
+                player.change_direction(0.075)
 
             if ev.type == pg.KEYDOWN:
                 if ev.key == pg.K_SPACE:
