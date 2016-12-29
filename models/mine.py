@@ -1,16 +1,13 @@
-from constants import WINDOW_WIDTH, WINDOW_HEIGHT
-from random import randint
-from engine.geometry import distance
 import pygame as pg
-from engine.geometry import move
+from random import randint
+from models.enemy import Enemy
+from engine.geometry import distance, move
 
+class Mine(Enemy):
 
-class Mine:
-
-    def __init__(self):
+    def __init__(self, player_position):
         self.radius = randint(20, 35)
-        self.position = (randint(self.radius, WINDOW_WIDTH - self.radius),
-                randint(self.radius, WINDOW_HEIGHT - self.radius))
+        self.calculate_spawn_position(player_position)
         self.main_surface = pg.display.get_surface()
         self.color = (0, 0, 255)
         self.direction = 0

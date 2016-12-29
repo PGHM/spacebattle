@@ -21,9 +21,9 @@ class Map:
 
     def spawn_enemies(self):
         if len(self.enemies) % 2 == 0:
-            self.enemies.append(Star())
+            self.enemies.append(Star(self.player.get_position()))
         else:
-            self.enemies.append(Mine())
+            self.enemies.append(Mine(self.player.get_position()))
 
     def update(self):
         for bullet in self.bullets:
@@ -46,13 +46,11 @@ class Map:
                 self.enemies.remove(enemy)
                 continue
 
-
             if enemy.is_point_inside_hit_box(
                     self.player.space_ship.get_apex_point_relative_to(self.player.get_position())):
                 self.player.health -= enemy.collision_damage
                 self.enemies.remove(enemy)
                 continue
-
 
     def draw(self):
         for bullet in self.bullets:

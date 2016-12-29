@@ -1,19 +1,17 @@
 from random import randint
-from engine.geometry import move
-from constants import WINDOW_WIDTH, WINDOW_HEIGHT
-from engine.geometry import distance
+from engine.geometry import move, distance
+from models.enemy import Enemy
 import pygame as pg
 
-class Star:
+class Star(Enemy):
 
-    def __init__(self):
+    def __init__(self, player_position):
         self.radius = 15
-        self.position = (randint(self.radius, WINDOW_WIDTH - self.radius),
-                randint(self.radius, WINDOW_HEIGHT - self.radius))
+        self.calculate_spawn_position(player_position)
         self.main_surface = pg.display.get_surface()
         self.color = (255, 255, 0)
         self.speed = 5
-        self.direction = randint(0, 100)
+        self.direction = randint(0, 360)
         self.max_health = 100
         self.health = self.max_health
         self.collision_damage = 50

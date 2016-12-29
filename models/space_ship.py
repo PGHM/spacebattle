@@ -1,7 +1,5 @@
 from engine.geometry import rotate
-from math import cos
-from math import sin
-from math import pi
+from math import cos, sin, pi
 
 class SpaceShip:
 
