@@ -40,7 +40,6 @@ class Star(Enemy):
 
     def update_position(self, direction, speed):
         self.position = move(self.position, direction, speed)
-        self.point_list = rotate(self.point_list, self.rotation_speed)
    
     def get_moved_points(self):
         moved_points = []
@@ -50,5 +49,6 @@ class Star(Enemy):
         return moved_points
 
     def draw(self):
+        self.point_list = rotate(self.point_list, self.rotation_speed)
         pg.draw.polygon(self.main_surface, self.color,
                 self.get_moved_points(), 0)

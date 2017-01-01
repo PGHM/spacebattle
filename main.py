@@ -65,7 +65,6 @@ def main():
 
         game_map.update()
 
-
         # We draw everything from scratch on each frame.
         # So first fill everything with the background color
 
