@@ -7,6 +7,6 @@ class Enemy:
     def calculate_spawn_position(self, player_position):
         spawn_too_close = True
         while spawn_too_close:
-            self.position = (randint(self.radius, WINDOW_WIDTH - self.radius),
-                    randint(self.radius, WINDOW_HEIGHT - self.radius))
+            self.position = (randint(0, WINDOW_WIDTH), randint(0,
+                WINDOW_HEIGHT))
             spawn_too_close = distance(self.position, player_position) < NO_SPAWN_RADIUS
