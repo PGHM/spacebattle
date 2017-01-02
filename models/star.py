@@ -1,6 +1,7 @@
-from random import randint
+from random import uniform
 from engine.geometry import move, distance, rotate, point_in_polygon 
 from models.enemy import Enemy
+from math import pi
 import pygame as pg
 
 class Star(Enemy):
@@ -11,7 +12,7 @@ class Star(Enemy):
         self.color = (255, 255, 0)
         self.speed = 5
         self.rotation_speed = 0.1
-        self.direction = randint(0, 360)
+        self.direction = uniform(0, 2*pi)
         self.max_health = 100
         self.health = self.max_health
         self.collision_damage = 50

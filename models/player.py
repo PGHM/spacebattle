@@ -29,7 +29,7 @@ class Player:
         return self.direction_angle
     
     def change_direction(self, angle_diff):
-        self.direction_angle += angle_diff
+        self.direction_angle = (self.direction_angle + angle_diff) % (2*pi)
         self.space_ship.update_points(angle_diff)
 
     def fire(self):

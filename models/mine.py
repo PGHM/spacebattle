@@ -14,7 +14,7 @@ class Mine(Enemy):
         self.speed = 0
         self.max_health = 100
         self.health = self.max_health
-        self.collision_damage = 100
+        self.collision_damage = 10
 
     def damage(self, bullets):
         for bullet in bullets:
@@ -29,5 +29,4 @@ class Mine(Enemy):
         self.position = move(self.position, direction, speed)
     
     def draw(self):
-        pg.draw.circle(self.main_surface, self.color, self.position,
-                self.radius) 
+        pg.draw.circle(self.main_surface, self.color, self.get_int_coordinates(), self.radius) 
