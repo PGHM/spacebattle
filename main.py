@@ -44,27 +44,25 @@ def main():
         if player == None and keys[pg.K_RETURN]:
                 player, game_map = reset_game()
 
-        elif ev.type == pg.KEYUP:
-            pass
         elif ev.type == ENEMY_SPAWN_EVENT:
             game_map.spawn_enemies()
 
+
         # This block should contain key mapping that requires Player object
         if player != None:
-            if keys[pg.K_UP]:
-                game_map.move_objects(player.direction_angle + pi,
-                        player.speed)
             if keys[pg.K_LEFT]:
                 player.change_direction(-0.075)
             if keys[pg.K_RIGHT]:
                 player.change_direction(0.075)
+            if keys[pg.K_UP]:
+                game_map.move_objects((player.direction_angle + pi) % (2*pi),
+                        player.speed)
 
             if ev.type == pg.KEYDOWN:
                 if ev.key == pg.K_SPACE:
                     game_map.bullets.append(player.fire())
 
         game_map.update()
-
 
         # We draw everything from scratch on each frame.
         # So first fill everything with the background color

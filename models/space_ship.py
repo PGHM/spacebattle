@@ -15,9 +15,9 @@ class SpaceShip:
     def get_point_list(self):
         return [self.apex_point, self.left_wing_point, self.right_wing_point]
 
-    def get_apex_point_relative_to(self, point_x):
+    def get_apex_point_relative_to(self, point):
         point_list = self.get_point_list()
-        return (point_list[0][0] + point_x[0] , point_list[0][1] + point_x[1])
+        return (point_list[0][0] + point[0] , point_list[0][1] + point[1])
 
     def get_color(self):
         return self.ship_color

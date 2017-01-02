@@ -59,9 +59,9 @@ class Map:
         for enemy in self.enemies:
             enemy.draw()
 
-        self.update_hud()
+        self.draw_hud()
 
-    def update_hud(self):
+    def draw_hud(self):
         self.hud.print_score(self.score)
         self.hud.print_health(self.player.health)
 
