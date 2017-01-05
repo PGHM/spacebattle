@@ -1,4 +1,5 @@
 from math import cos, sin, pi, hypot
+from constants import RADAR_RADIUS
 
 def rotate(polygon, angle):
     rotated_points = []
@@ -17,10 +18,11 @@ def move(point, direction, amount):
 def distance(point1, point2):
     return hypot(point1[0] - point2[0], point1[1] - point2[1])
 
-def reached_edge(position, main_surface):
-    x_out_of_bounds = position[0] < 0 or position[0] > main_surface.get_width()
-    y_out_of_bounds = position[1] < 0 or position[1] > main_surface.get_height()
-    return x_out_of_bounds or y_out_of_bounds
+def reached_edge(object_position, player_position):
+    return distance(object_position, player_position) > RADAR_RADIUS
+    # x_out_of_bounds = position[0] < 0 or position[0] > main_surface.get_width()
+    # y_out_of_bounds = position[1] < 0 or position[1] > main_surface.get_height()
+    # return x_out_of_bounds or y_out_of_bounds
 
 def point_in_polygon(point, poly):
     x, y = point

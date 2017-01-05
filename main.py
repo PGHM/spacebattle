@@ -27,7 +27,7 @@ def main():
     clock = pg.time.Clock()
 
     # Create surface of (width, height), and its window.
-    main_surface = pg.display.set_mode((surface_height, surface_width))
+    main_surface = pg.display.set_mode((surface_width, surface_height))
 
     bg_color = (0, 0, 0)  # A color is a mix of (Red, Green, Blue)
     player, game_map = reset_game()

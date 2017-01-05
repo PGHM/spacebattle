@@ -30,13 +30,13 @@ class Map:
             bullet.update_position(bullet.direction, bullet.speed)
 
             if reached_edge(bullet.get_hit_box_point(),
-                    pg.display.get_surface()):
+                    self.player.get_position()):
                 self.bullets.remove(bullet)
         
         for enemy in self.enemies:
             enemy.update_position(enemy.direction, enemy.speed)
             if reached_edge(enemy.position,
-                    pg.display.get_surface()):
+                    self.player.get_position()):
                 self.enemies.remove(enemy)
                 continue
 
