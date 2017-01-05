@@ -1,9 +1,9 @@
 import pygame as pg
-from constants import WINDOW_WIDTH, WINDOW_HEIGHT, ENEMY_SPAWN_EVENT
+from constants import WINDOW_WIDTH, WINDOW_HEIGHT, ENEMY_SPAWN_EVENT, CLOCK_TICK
 from models.player import Player
 from models.map import Map
 from engine.control import handle_key_up, handle_key_down
-from models.space_ship import SpaceShip
+from models.space_ship import GalaxyFighter
 from math import pi
 
 def print_game_over(main_surface):
@@ -13,7 +13,7 @@ def print_game_over(main_surface):
     pg.display.flip()
 
 def reset_game():
-    space_ship = SpaceShip(50, 30, (255, 255, 255))
+    space_ship = GalaxyFighter(50, 30, (255, 255, 255))
     player = Player(space_ship)
     game_map = Map(player)
     return player, game_map
@@ -33,7 +33,7 @@ def main():
     player, game_map = reset_game()
 
     while True:
-        clock.tick(60)
+        clock.tick(CLOCK_TICK)
 
         ev = pg.event.poll()    # Look for any event
         keys = pg.key.get_pressed()
@@ -56,7 +56,7 @@ def main():
                 player.change_direction(0.075)
             if keys[pg.K_UP]:
                 game_map.move_objects((player.direction_angle + pi) % (2*pi),
-                        player.speed)
+                        player.get_speed())
 
             if ev.type == pg.KEYDOWN:
                 if ev.key == pg.K_SPACE:

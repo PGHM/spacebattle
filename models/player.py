@@ -18,7 +18,6 @@ class Player:
         
         #TODO: this could come as a parameter?
         self.direction_angle = 3 * pi / 2 # ship starts with apex pointing up
-        self.speed = 5
         
         self.space_ship = space_ship
 
@@ -28,6 +27,9 @@ class Player:
     def get_direction(self):
         return self.direction_angle
     
+    def get_speed(self):
+        return self.space_ship.speed
+
     def change_direction(self, angle_diff):
         self.direction_angle = (self.direction_angle + angle_diff) % (2*pi)
         self.space_ship.update_points(angle_diff)
